@@ -1,0 +1,10 @@
+* {
+  	font-family: {{font}}, sans-serif;
+  	color: {{fontColor}};
+    overflow: hidden;
+}
+
+#countdown {
+  font-weight: bold;
+  font-size: {{fontSize}}px;
+}
