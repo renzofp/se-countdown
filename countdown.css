@@ -1,7 +1,7 @@
 * {
-  	font-family: {{font}}, sans-serif;
-  	color: {{fontColor}};
-    overflow: hidden;
+  font-family: {{font}}, sans-serif;
+  color: {{fontColor}};
+  overflow: hidden;
 }
 
 #countdown {
