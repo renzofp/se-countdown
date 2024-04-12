@@ -17,25 +17,36 @@ function initializeCountdown(duration) {
 }
 
 function parseDuration(durationStr) {
-  const [amount, unit] = durationStr.split(" ");
-  const now = new Date();
-  switch (unit) {
-    case "minute":
-    case "minutes":
-      return new Date(now.getTime() + parseInt(amount) * 60000);
-    case "hour":
-    case "hours":
-      return new Date(now.getTime() + parseInt(amount) * 3600000);
-    case "day":
-    case "days":
-      return new Date(now.getTime() + parseInt(amount) * 86400000);
-    case "second":
-    case "seconds":
-      return new Date(now.getTime() + parseInt(amount) * 1000);
-    default:
-      console.error("Unsupported duration unit:", unit);
-      return now;
+  const parts = durationStr.split(" ");
+  let targetTime = new Date();
+
+  for (let i = 0; i < parts.length; i += 2) {
+    const amount = parseInt(parts[i]);
+    const unit = parts[i + 1];
+
+    switch (unit) {
+      case "minute":
+      case "minutes":
+        targetTime = new Date(targetTime.getTime() + amount * 60000);
+        break;
+      case "hour":
+      case "hours":
+        targetTime = new Date(targetTime.getTime() + amount * 3600000);
+        break;
+      case "day":
+      case "days":
+        targetTime = new Date(targetTime.getTime() + amount * 86400000);
+        break;
+      case "second":
+      case "seconds":
+        targetTime = new Date(targetTime.getTime() + amount * 1000);
+        break;
+      default:
+        console.error("Unsupported duration unit:", unit);
+    }
   }
+
+  return targetTime;
 }
 
 function updateCountdown(targetTime) {
